@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:skill_track_client/app_localization.dart';
+import 'package:skill_track_client/dependecy/dependency.dart';
 
-void main() {
+void main() async {
+  await Dependency.init();
   runApp(const _App());
 }
 

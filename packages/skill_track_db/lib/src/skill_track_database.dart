@@ -1,3 +1,4 @@
+import 'package:skill_track_db/src/groups/skill_group.dart';
 import 'package:skill_track_db/src/models/skill_exp_model.dart';
 import 'package:skill_track_db/src/models/skill_model.dart';
 import 'package:sqflite/sqflite.dart';
@@ -5,9 +6,12 @@ import 'package:sqflite/sqflite.dart';
 class SkillTrackDatabase {
   final String path;
 
-  const SkillTrackDatabase({required this.path});
+  final SkillGroup skill;
 
-  Future<Database> _open() async {
+  SkillTrackDatabase({required this.path})
+      : skill = SkillGroup(databaseDelegate: () => _open(path));
+
+  static Future<Database> _open(String path) async {
     return openDatabase(
       path,
       version: 1,

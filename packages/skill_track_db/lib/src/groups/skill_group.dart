@@ -1,4 +1,4 @@
-import 'package:skill_track_db/src/models/skill_exp_history_entry_model.dart';
+import 'package:skill_track_db/src/view_models/skill_exp_history_entry_model.dart';
 import 'package:skill_track_db/src/models/skill_exp_model.dart';
 import 'package:skill_track_db/src/models/skill_model.dart';
 import 'package:skill_track_db/src/view_models/skill_summary_model.dart';
@@ -13,17 +13,17 @@ class SkillGroup {
 
   Future<void> createSkill(SkillModel skillModel) async {
     final database = await _databaseDelegate();
-    database.insert(SkillModel.table, skillModel.toMap());
+     await database.insert(SkillModel.table, skillModel.toMap());
   }
 
   Future<void> createSkillExp(SkillExpModel skillExpModel) async {
     final database = await _databaseDelegate();
-    database.insert(SkillExpModel.table, skillExpModel.toMap());
+    await database.insert(SkillExpModel.table, skillExpModel.toMap());
   }
 
   Future<void> updateSkill(SkillModel skillModel) async {
     final database = await _databaseDelegate();
-    database.update(
+    await database.update(
       SkillModel.table,
       skillModel.toMap(),
       where: '${SkillModel.columnId} = ?',
@@ -33,16 +33,21 @@ class SkillGroup {
 
   Future<void> deleteSkill(int id) async {
     final database = await _databaseDelegate();
-    database.delete(
+    await database.delete(
       SkillModel.table,
       where: '${SkillModel.columnId} = ?',
+      whereArgs: [id],
+    );
+    await database.delete(
+      SkillExpModel.table,
+      where: '${SkillExpModel.columnSkillId} = ?',
       whereArgs: [id],
     );
   }
 
   Future<void> deleteSkillExp(int id) async {
     final database = await _databaseDelegate();
-    database.delete(
+    await database.delete(
       SkillExpModel.table,
       where: '${SkillExpModel.columnId} = ?',
       whereArgs: [id],
