@@ -1,0 +1,10 @@
+name: skill_track
+
+packages:
+  - packages/**
+
+scripts:
+  l10n:
+    exec: fvm flutter gen-l10n
+    packageFilters: 
+      fileExists: l10n.yaml 
