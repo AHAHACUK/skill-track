@@ -8,3 +8,9 @@ scripts:
     exec: fvm flutter gen-l10n
     packageFilters: 
       fileExists: l10n.yaml 
+
+  pub_get:
+    exec: fvm flutter pub get
+
+  pub_upgrade:
+    exec: fvm flutter pub upgrade

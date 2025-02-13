@@ -1,0 +1,10 @@
+^C:\PROJECTS\FLUTTER PROJECTS\SKILL_TRACK\PACKAGES\SKILL_TRACK_CLIENT\WINDOWS\FLUTTER\EPHEMERAL\.PLUGIN_SYMLINKS\SCREEN_RETRIEVER_WINDOWS\WINDOWS\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" "-SC:/Projects/Flutter Projects/skill_track/packages/skill_track_client/windows" "-BC:/Projects/Flutter Projects/skill_track/packages/skill_track_client/build/windows/x64" --check-stamp-file "C:/Projects/Flutter Projects/skill_track/packages/skill_track_client/build/windows/x64/plugins/screen_retriever_windows/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

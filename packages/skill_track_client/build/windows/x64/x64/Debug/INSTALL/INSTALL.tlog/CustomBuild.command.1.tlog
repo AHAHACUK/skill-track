@@ -1,0 +1,10 @@
+^C:\PROJECTS\FLUTTER PROJECTS\SKILL_TRACK\PACKAGES\SKILL_TRACK_CLIENT\BUILD\WINDOWS\X64\CMAKEFILES\B0AE51F8B9133FBA9D8D90601925FFF4\INSTALL_FORCE.RULE
+setlocal
+cd .
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
