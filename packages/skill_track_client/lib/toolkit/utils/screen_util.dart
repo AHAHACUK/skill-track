@@ -8,7 +8,7 @@ extension TextStyleScreenUtil on TextStyle {
 }
 
 extension NumScreenUtil on num {
-  num get r => ScreenUtil().radius(this);
+  double get r => ScreenUtil().radius(this);
 }
 
 extension SizedBoxScreenUtil on SizedBox {
