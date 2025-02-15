@@ -9,11 +9,15 @@ class SkillInteractor {
     required SkillRepository repository,
   }) : _repository = repository;
 
+  Future<Skill> createSkill(Skill skill) {
+    return _repository.createSkill(skill);
+  }
+
   Future<List<Skill>> getCurrentSkills() {
     return _repository.getCurrentSkills();
   }
 
   Future<List<SkillGain>> getSkillsHistory(int skillId) {
-    return _repository.getSkillsHistory(skillId);
+    return _repository.getSkillHistory(skillId);
   }
 }

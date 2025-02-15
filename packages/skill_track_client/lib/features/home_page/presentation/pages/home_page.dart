@@ -7,7 +7,7 @@ import 'package:skill_track_client/features/home_page/presentation/state/skill_l
 import 'package:skill_track_client/features/home_page/presentation/state/skill_list/skill_list_state.dart';
 import 'package:skill_track_client/features/home_page/presentation/widgets/action_button.dart';
 import 'package:skill_track_client/features/home_page/presentation/widgets/skill_card.dart';
-import 'package:skill_track_client/utils/screen_util.dart';
+import 'package:skill_track_client/toolkit/utils/screen_util.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,17 +17,18 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late final SkillListCubit skillCubit;
+  late final SkillListCubit cubit;
 
   @override
   void initState() {
     super.initState();
-    skillCubit = blocFactories.skillList.generate();
+    cubit = blocFactories.skillList.generate();
+    cubit.update();
   }
 
   @override
   void dispose() {
-    skillCubit.close();
+    cubit.close();
     super.dispose();
   }
 
@@ -36,6 +37,9 @@ class _HomePageState extends State<HomePage> {
       context: context,
       builder: (_) => const SkillCreateDialog(),
     );
+    if (context.mounted && skill != null) {
+      cubit.createSkill(skill);
+    }
   }
 
   @override
@@ -53,7 +57,7 @@ class _HomePageState extends State<HomePage> {
           ),
           Expanded(
             child: BlocBuilder(
-              bloc: skillCubit,
+              bloc: cubit,
               builder: (_, state) {
                 if (state is! DataSkillListState) {
                   return const SizedBox.shrink();

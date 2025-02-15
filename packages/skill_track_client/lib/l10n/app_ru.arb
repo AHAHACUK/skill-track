@@ -1,5 +1,14 @@
 {
     "@@locale": "ru",
     "skill": "навык",
-    "skills": "навыки"
+    "skills": "навыки",
+    "cancel": "отмена",
+    "confirm": "подтвердить",
+    "save": "сохранить",
+    "create": "создать",
+    "yes": "да",
+    "no": "нет",
+    "createSkill": "создать навык",
+    "skillName": "имя навыка",
+    "skillExpPerLevel": "очки на уровень"
 }

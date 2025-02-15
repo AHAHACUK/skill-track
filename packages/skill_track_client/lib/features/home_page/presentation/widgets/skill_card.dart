@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skill_track_client/core/domain/entity/skill.dart';
-import 'package:skill_track_client/utils/screen_util.dart';
+import 'package:skill_track_client/toolkit/utils/screen_util.dart';
 
 class SkillCard extends StatelessWidget {
   final Skill skill;

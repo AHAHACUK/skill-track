@@ -11,9 +11,9 @@ class SkillGroup {
     required Future<Database> Function() databaseDelegate,
   }) : _databaseDelegate = databaseDelegate;
 
-  Future<void> createSkill(SkillModel skillModel) async {
+  Future<int> createSkill(SkillModel skillModel) async {
     final database = await _databaseDelegate();
-     await database.insert(SkillModel.table, skillModel.toMap());
+    return database.insert(SkillModel.table, skillModel.toMap());
   }
 
   Future<void> createSkillExp(SkillExpModel skillExpModel) async {
@@ -79,10 +79,10 @@ class SkillGroup {
       ' SUM(${SkillExpModel.columnAmount}) as ${SkillSummaryModel.columnExpSum},'
       ' MAX(${SkillExpModel.columnDateTime}) as ${SkillSummaryModel.columnLastUpdate}'
       ' FROM ${SkillModel.table}'
-      ' ${query != null ? 'WHERE ${SkillModel.columnName} LIKE "%?%"' : ''} '
+      '${query != null ? ' WHERE ${SkillModel.columnName} LIKE "%?%"' : ''}'
       ' LEFT JOIN ${SkillExpModel.table}'
       ' ON ${SkillModel.table}.${SkillModel.columnId} = ${SkillExpModel.table}.${SkillExpModel.columnSkillId}'
-      ' GROUP BY ${SkillModel.columnId}',
+      ' GROUP BY ${SkillModel.table}.${SkillModel.columnId}',
       [if (query != null) query],
     );
     return rows.map((e) => SkillSummaryModel.fromMap(e)).toList();

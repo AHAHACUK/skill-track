@@ -1,13 +1,25 @@
 part of 'dependency.dart';
 
 class DependencyBloc {
-  late final BlocFactory<SkillListCubit> skillList;
+  final BlocFactory<SkillListCubit> skillList;
+  final BlocFactory<SkillCreateCubit> skillCreate;
+  final BlocFactory<SkillCubit> skill;
 
-  DependencyBloc({required this.skillList});
+  DependencyBloc({
+    required this.skillList,
+    required this.skillCreate,
+    required this.skill,
+  });
 
   static Future<DependencyBloc> _init(_DependencyInteractor interactor) async {
     return DependencyBloc(
-      skillList: BlocFactory(() => SkillListCubit()),
+      skillList: BlocFactory(
+        () => SkillListCubit(
+          skillInteractor: interactor.skill,
+        ),
+      ),
+      skillCreate: BlocFactory(() => SkillCreateCubit()),
+      skill: BlocFactory(() => SkillCubit()),
     );
   }
 }

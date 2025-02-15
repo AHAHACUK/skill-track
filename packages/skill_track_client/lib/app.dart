@@ -25,7 +25,6 @@ class App extends StatelessWidget {
           Locale('en'),
         ],
         routerConfig: appRouter,
-        theme: ThemeData(),
       ),
     );
   }

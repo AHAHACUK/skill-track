@@ -9,7 +9,7 @@ class SkillSummaryModel {
   final String name;
   final double expPerLevel;
   final double expSum;
-  final DateTime lastUpdateDateTime;
+  final DateTime? lastUpdateDateTime;
 
   const SkillSummaryModel({
     required this.skillId,
@@ -22,8 +22,9 @@ class SkillSummaryModel {
   SkillSummaryModel.fromMap(Map<String, Object?> map)
       : skillId = map[columnId] as int,
         name = map[columnName] as String,
-        lastUpdateDateTime =
-            DateTime.fromMillisecondsSinceEpoch(map[columnLastUpdate] as int),
-        expSum = map[columnExpSum] as double,
+        lastUpdateDateTime = map[columnLastUpdate] != null
+            ? DateTime.fromMillisecondsSinceEpoch(map[columnLastUpdate] as int)
+            : null,
+        expSum = (map[columnExpSum] ?? 0.0) as double,
         expPerLevel = map[columnExpPerLevel] as double;
 }

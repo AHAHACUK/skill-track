@@ -1,3 +1,5 @@
+import 'package:skill_track_client/core/data/parser/skill_gain_parser.dart';
+import 'package:skill_track_client/core/data/parser/skill_parser.dart';
 import 'package:skill_track_client/core/domain/entity/skill.dart';
 import 'package:skill_track_client/core/domain/entity/skill_gain.dart';
 import 'package:skill_track_client/core/domain/repository/skill_repository.dart';
@@ -9,14 +11,25 @@ class DbSkillRepository implements SkillRepository {
   DbSkillRepository({required this.database});
 
   @override
-  Future<List<Skill>> getCurrentSkills() {
-    // TODO: implement getCurrentSkills
-    throw UnimplementedError();
+  Future<List<Skill>> getCurrentSkills() async {
+    final models = await database.skill.getSkillsSummary();
+    return models.map((e) => e.toSkill()).toList();
   }
 
   @override
-  Future<List<SkillGain>> getSkillsHistory(int skillId) {
-    // TODO: implement getSkillsHistory
-    throw UnimplementedError();
+  Future<List<SkillGain>> getSkillHistory(int skillId) async {
+    final models = await database.skill.getExpHistory();
+    return models.map((e) => e.toSkillGain()).toList();
+  }
+
+  @override
+  Future<Skill> createSkill(Skill skill) async {
+    final id = await database.skill.createSkill(
+      SkillModel(
+        name: skill.name,
+        expPerLevel: skill.expPerLevel,
+      ),
+    );
+    return skill.copyWith(id: id);
   }
 }

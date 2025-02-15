@@ -1,5 +1,14 @@
 {
     "@@locale": "en",
     "skill": "skill",
-    "skills": "skills"
+    "skills": "skills",
+    "cancel": "cancel",
+    "confirm": "confirm",
+    "save": "save",
+    "create": "create",
+    "yes": "yes",
+    "no": "no",
+    "createSkill": "create skill",
+    "skillName": "skill name",
+    "skillExpPerLevel": "exp per level"
 }

@@ -1,7 +1,22 @@
-sealed class SkillCreateState {
-  const SkillCreateState();
-}
+final class SkillCreateState {
+  final String name;
+  final double? expPerLevel;
 
-final class ProcessSkillCreateState extends SkillCreateState {
-  const ProcessSkillCreateState();
+  bool get canSave =>
+      name.isNotEmpty && expPerLevel != null && expPerLevel! > 0;
+
+  const SkillCreateState({
+    required this.name,
+    required this.expPerLevel,
+  });
+
+  SkillCreateState copyWith({
+    String? name,
+    double? expPerLevel,
+  }) {
+    return SkillCreateState(
+      name: name ?? this.name,
+      expPerLevel: expPerLevel ?? this.expPerLevel,
+    );
+  }
 }
