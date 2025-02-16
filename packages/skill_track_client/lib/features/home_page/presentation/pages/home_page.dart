@@ -50,50 +50,53 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final locale = context.locale;
-    return Scaffold(
-      body: LoadingVeilWrapper(
-        delay: const Duration(milliseconds: 100),
-        controller:
-            cubit.toValueListenable().map((e) => e is! DataSkillListState),
-        child: Stack(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16).r,
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      ActionButton(
-                        text: locale.createSkill.capitalized,
-                        onTap: () => _createSkill(context),
-                      ),
-                    ],
-                  ),
-                  Expanded(
-                    child: BlocBuilder(
-                      bloc: cubit,
-                      buildWhen: (_, state) => state is DataSkillListState,
-                      builder: (_, state) {
-                        final skills = state is DataSkillListState
-                            ? state.skills
-                            : const [];
-                        return ListView.separated(
-                          padding: const EdgeInsets.symmetric(vertical: 8).r,
-                          itemBuilder: (_, index) {
-                            final skill = skills[index];
-                            return SkillCard(skill: skill);
-                          },
-                          separatorBuilder: (_, __) =>
-                              const SizedBox(height: 4).r,
-                          itemCount: skills.length,
-                        );
-                      },
+    return BlocProvider.value(
+      value: cubit,
+      child: Scaffold(
+        body: LoadingVeilWrapper(
+          delay: const Duration(milliseconds: 100),
+          controller:
+              cubit.toValueListenable().map((e) => e is! DataSkillListState),
+          child: Stack(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16).r,
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        ActionButton(
+                          text: locale.createSkill.capitalized,
+                          onTap: () => _createSkill(context),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
+                    Expanded(
+                      child: BlocBuilder(
+                        bloc: cubit,
+                        buildWhen: (_, state) => state is DataSkillListState,
+                        builder: (_, state) {
+                          final skills = state is DataSkillListState
+                              ? state.skills
+                              : const [];
+                          return ListView.separated(
+                            padding: const EdgeInsets.symmetric(vertical: 8).r,
+                            itemBuilder: (_, index) {
+                              final skill = skills[index];
+                              return SkillCard(skill: skill);
+                            },
+                            separatorBuilder: (_, __) =>
+                                const SizedBox(height: 4).r,
+                            itemCount: skills.length,
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -23,7 +23,7 @@ class SkillCubit extends Cubit<SkillState> {
     const amount = 1.0;
     final skill = (state as DataSkillState).skill;
     unawaited(_skillInteractor.addExp(skill, amount));
-    emit(DataSkillState(skill: skill.copyWith(exp: skill.expSum + amount)));
+    emit(DataSkillState(skill: skill.copyWith(expSum: skill.expSum + amount)));
   }
 
   void removeExp() {
@@ -31,6 +31,6 @@ class SkillCubit extends Cubit<SkillState> {
     const amount = 1.0;
     final skill = (state as DataSkillState).skill;
     unawaited(_skillInteractor.removeExp(skill, amount));
-    emit(DataSkillState(skill: skill.copyWith(exp: skill.expSum - amount)));
+    emit(DataSkillState(skill: skill.copyWith(expSum: skill.expSum - amount)));
   }
 }

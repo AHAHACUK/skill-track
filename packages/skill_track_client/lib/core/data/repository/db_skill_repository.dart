@@ -43,7 +43,7 @@ class DbSkillRepository implements SkillRepository {
         amount: amount,
       ),
     );
-    return skill.copyWith(exp: skill.expSum + amount);
+    return skill.copyWith(expSum: skill.expSum + amount);
   }
 
   @override
@@ -56,6 +56,11 @@ class DbSkillRepository implements SkillRepository {
         amount: -amount,
       ),
     );
-    return skill.copyWith(exp: skill.expSum - amount);
+    return skill.copyWith(expSum: skill.expSum - amount);
+  }
+
+  @override
+  Future<void> deleteSkill(Skill skill) async {
+    await database.skill.deleteSkill(skill.id!);
   }
 }

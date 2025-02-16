@@ -4,6 +4,8 @@ import 'package:skill_track_client/core/domain/entity/skill_gain.dart';
 abstract class SkillRepository {
   Future<Skill> createSkill(Skill skill);
 
+  Future<void> deleteSkill(Skill skill);
+
   Future<Skill> addSkillExp(Skill skill, double amount);
 
   Future<Skill> removeSkillExp(Skill skill, double amount);

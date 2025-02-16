@@ -18,12 +18,12 @@ class Skill {
 
   Skill copyWith({
     int? id,
-    double? exp,
+    double? expSum,
   }) {
     return Skill(
       id: id ?? this.id,
       name: name,
-      expSum: exp ?? this.expSum,
+      expSum: expSum ?? this.expSum,
       expPerLevel: expPerLevel,
       lastUpdate: lastUpdate,
     );

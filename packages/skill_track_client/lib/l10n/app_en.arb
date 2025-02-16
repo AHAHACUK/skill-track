@@ -6,6 +6,7 @@
     "confirm": "confirm",
     "save": "save",
     "create": "create",
+    "delete": "delete",
     "yes": "yes",
     "no": "no",
     "createSkill": "create skill",

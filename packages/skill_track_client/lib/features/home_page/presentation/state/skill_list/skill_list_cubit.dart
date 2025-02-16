@@ -19,6 +19,18 @@ class SkillListCubit extends Cubit<SkillListState> {
     emit(DataSkillListState(skills: [...skills, skill]));
   }
 
+  void deleteSkill(Skill skill) async {
+    assert(state is DataSkillListState);
+    final skills = (state as DataSkillListState).skills;
+    emit(LoadingSkillListState());
+    await _skillInteractor.deleteSkill(skill);
+    emit(
+      DataSkillListState(
+        skills: skills.where((e) => e.id! != skill.id!).toList(),
+      ),
+    );
+  }
+
   void update() async {
     assert(state is DataSkillListState);
     emit(LoadingSkillListState());
