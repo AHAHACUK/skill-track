@@ -1,2 +1,3 @@
-A sample command-line application with an entrypoint in `bin/`, library code
-in `lib/`, and example unit test in `test/`.
+Simple app for gamification of learning real life skills.
+
+![image](https://github.com/user-attachments/assets/90d3563f-8d22-4ee5-9aaf-bfe46fddea47)
