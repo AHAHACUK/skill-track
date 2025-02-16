@@ -19,7 +19,11 @@ class DependencyBloc {
         ),
       ),
       skillCreate: BlocFactory(() => SkillCreateCubit()),
-      skill: BlocFactory(() => SkillCubit()),
+      skill: BlocFactory(
+        () => SkillCubit(
+          skillInteractor: interactor.skill,
+        ),
+      ),
     );
   }
 }

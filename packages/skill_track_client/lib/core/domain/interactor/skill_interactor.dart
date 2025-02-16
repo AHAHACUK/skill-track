@@ -13,6 +13,14 @@ class SkillInteractor {
     return _repository.createSkill(skill);
   }
 
+  Future<Skill> addExp(Skill skill, double amount) {
+    return _repository.addSkillExp(skill, amount);
+  }
+
+  Future<Skill> removeExp(Skill skill, double amount) {
+    return _repository.removeSkillExp(skill, amount);
+  }
+
   Future<List<Skill>> getCurrentSkills() {
     return _repository.getCurrentSkills();
   }

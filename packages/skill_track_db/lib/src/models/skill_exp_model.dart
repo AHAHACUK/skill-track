@@ -5,7 +5,7 @@ class SkillExpModel {
   static const columnDateTime = "dateTime";
   static const columnAmount = "amount";
 
-  final int id;
+  final int? id;
   final int skillId;
   final DateTime dateTime;
   final double amount;

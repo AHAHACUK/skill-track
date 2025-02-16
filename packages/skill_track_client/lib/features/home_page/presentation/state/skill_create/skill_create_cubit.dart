@@ -31,7 +31,7 @@ class SkillCreateCubit extends Cubit<SkillCreateState>
     return Skill(
       id: null,
       name: state.name,
-      exp: 0,
+      expSum: 0,
       expPerLevel: state.expPerLevel!,
       lastUpdate: null,
     );

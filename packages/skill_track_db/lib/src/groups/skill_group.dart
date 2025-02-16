@@ -16,9 +16,9 @@ class SkillGroup {
     return database.insert(SkillModel.table, skillModel.toMap());
   }
 
-  Future<void> createSkillExp(SkillExpModel skillExpModel) async {
+  Future<int> createSkillExp(SkillExpModel skillExpModel) async {
     final database = await _databaseDelegate();
-    await database.insert(SkillExpModel.table, skillExpModel.toMap());
+    return await database.insert(SkillExpModel.table, skillExpModel.toMap());
   }
 
   Future<void> updateSkill(SkillModel skillModel) async {

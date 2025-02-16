@@ -6,7 +6,7 @@ extension SkillParser on SkillSummaryModel {
     return Skill(
       id: skillId,
       name: name,
-      exp: expSum,
+      expSum: expSum,
       expPerLevel: expPerLevel,
       lastUpdate: lastUpdateDateTime,
     );

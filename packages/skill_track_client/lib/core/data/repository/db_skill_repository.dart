@@ -32,4 +32,30 @@ class DbSkillRepository implements SkillRepository {
     );
     return skill.copyWith(id: id);
   }
+
+  @override
+  Future<Skill> addSkillExp(Skill skill, double amount) async {
+    await database.skill.createSkillExp(
+      SkillExpModel(
+        id: null,
+        skillId: skill.id!,
+        dateTime: DateTime.now(),
+        amount: amount,
+      ),
+    );
+    return skill.copyWith(exp: skill.expSum + amount);
+  }
+
+  @override
+  Future<Skill> removeSkillExp(Skill skill, double amount) async {
+    await database.skill.createSkillExp(
+      SkillExpModel(
+        id: null,
+        skillId: skill.id!,
+        dateTime: DateTime.now(),
+        amount: -amount,
+      ),
+    );
+    return skill.copyWith(exp: skill.expSum - amount);
+  }
 }

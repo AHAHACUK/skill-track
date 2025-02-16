@@ -9,8 +9,10 @@ import 'package:skill_track_client/features/home_page/presentation/widgets/actio
 import 'package:skill_track_client/features/home_page/presentation/widgets/skill_card.dart';
 import 'package:skill_track_client/toolkit/transform/bloc_listenable_transformer.dart';
 import 'package:skill_track_client/toolkit/transform/value_listenable_map.dart';
+import 'package:skill_track_client/toolkit/utils/context_util.dart';
 import 'package:skill_track_client/toolkit/utils/screen_util.dart';
 import 'package:skill_track_client/core/presentation/widgets/loading_veil_wrapper.dart';
+import 'package:skill_track_client/toolkit/utils/text_util.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -47,6 +49,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final locale = context.locale;
     return Scaffold(
       body: LoadingVeilWrapper(
         delay: const Duration(milliseconds: 100),
@@ -61,7 +64,7 @@ class _HomePageState extends State<HomePage> {
                   Row(
                     children: [
                       ActionButton(
-                        text: "ADD",
+                        text: locale.createSkill.capitalized,
                         onTap: () => _createSkill(context),
                       ),
                     ],
@@ -75,6 +78,7 @@ class _HomePageState extends State<HomePage> {
                             ? state.skills
                             : const [];
                         return ListView.separated(
+                          padding: const EdgeInsets.symmetric(vertical: 8).r,
                           itemBuilder: (_, index) {
                             final skill = skills[index];
                             return SkillCard(skill: skill);
